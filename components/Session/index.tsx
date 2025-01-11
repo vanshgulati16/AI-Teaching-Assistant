@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { LineChart, LogOut, Settings, StopCircle, MessageSquare } from "lucide-react";
+import { LineChart, LogOut, Settings, StopCircle, MessageSquare, Video, VideoOff } from "lucide-react";
 import { PipecatMetrics, TransportState, VoiceEvent } from "realtime-ai";
 import { useVoiceClient, useVoiceClientEvent } from "realtime-ai-react";
 
@@ -34,6 +34,7 @@ export const Session = React.memo(
     const modalRef = useRef<HTMLDialogElement>(null);
     const [showTranscript, setShowTranscript] = useState<boolean>(false);
     const [transcriptData, setTranscriptData] = useState<string[]>([]);
+    const [isCameraOn, setIsCameraOn] = useState(true);
 
     // ---- Voice Client Events
 
@@ -101,6 +102,13 @@ export const Session = React.memo(
       setTranscriptData(prev => [...prev, transcript]);
     }, []);
 
+    const toggleCamera = useCallback(() => {
+      if (voiceClient) {
+        voiceClient.enableCam(!isCameraOn);
+        setIsCameraOn(!isCameraOn);
+      }
+    }, [isCameraOn, voiceClient]);
+
     return (
       <>
         <dialog ref={modalRef}>
@@ -144,6 +152,7 @@ export const Session = React.memo(
             <Agent
               isReady={state === "ready"}
               statsAggregator={stats_aggregator}
+              showVideo={isCameraOn}
             />
           </Card.Card>
           {/* <TranscriptOverlay /> */}
@@ -209,6 +218,20 @@ export const Session = React.memo(
                   onClick={() => setShowDevices(true)}
                 >
                   <Settings />
+                </Button>
+              </TooltipTrigger>
+            </Tooltip>
+            <Tooltip>
+              <TooltipContent>
+                {isCameraOn ? "Turn off camera" : "Turn on camera"}
+              </TooltipContent>
+              <TooltipTrigger asChild>
+                <Button
+                  variant={isCameraOn ? "light" : "ghost"}
+                  size="icon"
+                  onClick={toggleCamera}
+                >
+                  {isCameraOn ? <Video /> : <VideoOff />}
                 </Button>
               </TooltipTrigger>
             </Tooltip>

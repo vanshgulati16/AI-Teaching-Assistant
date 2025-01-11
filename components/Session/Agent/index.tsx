@@ -9,11 +9,14 @@ import WaveForm from "./waveform";
 
 import styles from "./styles.module.css";
 
-export const Agent: React.FC<{
+interface AgentProps {
   isReady: boolean;
   statsAggregator: StatsAggregator;
-}> = memo(
-  ({ isReady, statsAggregator }) => {
+  showVideo: boolean;
+}
+
+export const Agent: React.FC<AgentProps> = memo(
+  ({ isReady, statsAggregator, showVideo }) => {
     const [hasStarted, setHasStarted] = useState<boolean>(false);
     const [botStatus, setBotStatus] = useState<
       "initializing" | "connected" | "disconnected"
@@ -70,14 +73,18 @@ export const Agent: React.FC<{
             <WaveForm />
           )}
         </div>
-        <VoiceClientVideo
-          participant="local"
-          className={styles.video}
-        />
+        {showVideo && (
+          <VoiceClientVideo
+            participant="local"
+            className={styles.video}
+          />
+        )}
       </div>
     );
   },
-  (p, n) => p.isReady === n.isReady
+  (p, n) => 
+    p.isReady === n.isReady && 
+    p.showVideo === n.showVideo
 );
 Agent.displayName = "Agent";
 
