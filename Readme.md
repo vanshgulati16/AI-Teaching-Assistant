@@ -22,7 +22,7 @@ An interactive AI teaching assistant powered by real-time voice communication an
 - **UI Components**: Custom components with Radix UI primitives
 - **AI Integration**: 
   - Anthropic's Claude 3.5 Sonnet
-  - OpenAI's Real-time AI
+  - Cartesia's Real-time AI
 - **Voice/Video**: Daily.co SDK
 
 ## Getting Started
@@ -50,12 +50,18 @@ yarn
 ```
 
 3. Create a `.env.local` file in the root directory:
-```cp env.example .env.local```
+```bash
+cp env.example .env.local
+```
 
 4. Start the development server:
-```yarn run dev```
+```bash
+yarn dev
+```
 or
-```npm run dev```
+```bash
+npm run dev
+```
 5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Usage
