@@ -12,7 +12,7 @@ export function Header() {
     >
       <div className="group flex gap-8 items-center">
         <a
-          href=""
+          href="https://github.com/vanshgulati16/AI-Teaching-Assistant"
           target="_blank"
           rel="noreferrer"
           className={aCx}

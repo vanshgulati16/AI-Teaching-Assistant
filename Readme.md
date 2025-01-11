@@ -1,5 +1,3 @@
-### Deployment URL : https://ai-teacher-rho.vercel.app/
-
 # AI Teaching Assistant Demo
 
 An interactive AI teaching assistant powered by real-time voice communication and computer vision capabilities. This application enables natural conversations with an AI tutor that can see, hear, and respond to students in real-time.
@@ -41,8 +39,8 @@ An interactive AI teaching assistant powered by real-time voice communication an
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/SuyashPatil-29/ai-teacher
-cd ai-teacher-demo
+git clone https://github.com/vanshgulati16/AI-Teaching-Assistant
+cd AI-Teaching-Assistant
 ```
 
 2. Install dependencies:
@@ -52,13 +50,12 @@ yarn
 ```
 
 3. Create a `.env.local` file in the root directory:
-DAILY_API_KEY=your_daily_api_key
-OPENAI_API_KEY=your_openai_api_key
-DAILY_BOTS_URL=your_daily_bots_url
+```cp env.example .env.local```
 
 4. Start the development server:
 ```yarn run dev```
-
+or
+```npm run dev```
 5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Usage
@@ -121,14 +118,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [OpenAI](https://openai.com) for real-time AI capabilities
 - [Vercel](https://vercel.com) for hosting and deployment platform
 
-## Support
-
-For support, please open an issue in the GitHub repository or contact [patilsuyash892@gmail.com](mailto:patilsuyash892@gmail.com).
-Instagram : https://www.instagram.com/_suyashpatil_/
-Ph No : +91 7483543757
-
 ---
-
-### Deployment URL : https://ai-teacher-rho.vercel.app/
-
-Built with ❤️ by Suyash Ganesh Patil

@@ -1,60 +1,89 @@
 .container {
-  position: absolute;
-  left: 1rem;
-  right: 1rem;
-  bottom: 1.5rem;
-  top: 1.5rem;
-  color: white;
-  z-index: 50;
-  margin: 0 auto;
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
   display: flex;
-  flex-direction: column;
-  gap: 8px;
   align-items: center;
-  justify-content: end;
-  text-align: center;
+  z-index: 60;
 }
 
-.transcript {
-  font-weight: 600;
-  font-size: theme(fontSize.sm);
-  max-width: 320px;
+.toggleButton {
+  position: relative;
+  background: white;
+  border: none;
+  border-radius: 8px 0 0 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+  z-index: 60;
 }
 
-.transcript span {
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  -moz-box-decoration-break: clone;
-  background-color: color-mix(
-    in srgb,
-    theme(colors.primary.800),
-    transparent 30%
-  );
-  border-radius: theme(borderRadius.md);
-  padding: 4px 8px;
-  line-height: 1;
+.toggleButton:hover {
+  background: #f8f8f8;
+  box-shadow: -2px 0 6px rgba(0, 0, 0, 0.15);
+}
+
+.toggleButton svg {
+  color: #1a1a1a;
+}
+
+.transcriptContainer {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px 0 0 12px;
+  padding: 1.5rem;
+  width: 320px;
+  max-height: 400px;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.3s ease-in-out;
+  box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.expanded .transcriptContainer {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .sentence {
-  opacity: 1;
-  margin: 0px;
-  animation: fadeOut 2.5s linear forwards;
-  animation-delay: 1s;
-  line-height: 2;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  color: #1a1a1a;
+  animation: fadeIn 0.3s ease-out;
 }
 
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  20% {
-    transform: scale(1);
-    filter: blur(0);
-  }
-  100% {
-    transform: scale(0.8) translateY(-50%);
-    filter: blur(25px);
+@keyframes fadeIn {
+  from {
     opacity: 0;
+    transform: translateY(10px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbar styles */
+.transcriptContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.transcriptContainer::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.transcriptContainer::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.transcriptContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
 }

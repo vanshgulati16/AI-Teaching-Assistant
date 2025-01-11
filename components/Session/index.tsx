@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { LineChart, LogOut, Settings, StopCircle } from "lucide-react";
+import { LineChart, LogOut, Settings, StopCircle, MessageSquare } from "lucide-react";
 import { PipecatMetrics, TransportState, VoiceEvent } from "realtime-ai";
 import { useVoiceClient, useVoiceClientEvent } from "realtime-ai-react";
 
@@ -32,6 +32,8 @@ export const Session = React.memo(
     const [showStats, setShowStats] = useState<boolean>(false);
     const [muted, setMuted] = useState(startAudioOff);
     const modalRef = useRef<HTMLDialogElement>(null);
+    const [showTranscript, setShowTranscript] = useState<boolean>(false);
+    const [transcriptData, setTranscriptData] = useState<string[]>([]);
 
     // ---- Voice Client Events
 
@@ -95,6 +97,10 @@ export const Session = React.memo(
       setMuted(!muted);
     }
 
+    const handleTranscriptUpdate = useCallback((transcript: string) => {
+      setTranscriptData(prev => [...prev, transcript]);
+    }, []);
+
     return (
       <>
         <dialog ref={modalRef}>
@@ -116,6 +122,16 @@ export const Session = React.memo(
             <Stats
               statsAggregator={stats_aggregator}
               handleClose={() => setShowStats(false)}
+            />,
+            document.getElementById("tray")!
+          )}
+
+        {showTranscript &&
+          createPortal(
+            <TranscriptOverlay 
+              onClose={() => setShowTranscript(false)}
+              sentences={transcriptData}
+              onTranscriptUpdate={handleTranscriptUpdate}
             />,
             document.getElementById("tray")!
           )}
@@ -155,6 +171,19 @@ export const Session = React.memo(
                   }}
                 >
                   <StopCircle />
+                </Button>
+              </TooltipTrigger>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipContent>Show transcript</TooltipContent>
+              <TooltipTrigger asChild>
+                <Button
+                  variant={showTranscript ? "light" : "ghost"}
+                  size="icon"
+                  onClick={() => setShowTranscript(!showTranscript)}
+                >
+                  <MessageSquare />
                 </Button>
               </TooltipTrigger>
             </Tooltip>
