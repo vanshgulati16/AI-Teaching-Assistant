@@ -32,7 +32,7 @@ An interactive AI teaching assistant powered by real-time voice communication an
 - Node.js 18.0 or higher
 - npm or yarn
 - A Daily.co API key
-- OpenAI API key
+- Cartesia API key
 - Anthropic API key
 
 ### Installation
@@ -121,7 +121,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [Daily.co](https://daily.co) for real-time communication infrastructure
 - [Anthropic](https://anthropic.com) for Claude AI model
-- [OpenAI](https://openai.com) for real-time AI capabilities
+- [Cartesia](https://play.cartesia.ai/) for real-time AI capabilities
 - [Vercel](https://vercel.com) for hosting and deployment platform
 
 ---
