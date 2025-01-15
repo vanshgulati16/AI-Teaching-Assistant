@@ -18,6 +18,7 @@ export async function POST(request: Request) {
       openai: process.env.OPENAI_API_KEY,
       gemini: process.env.GEMINI_API_KEY,
       cartesia: process.env.CARTESIA_API_KEY,
+      elevenlabs: process.env.ELEVENLABS_API_KEY,
     },
     config: [...config],
   };

@@ -6,7 +6,8 @@ export const defaultMaxDuration = 60 * 6;
 export const defaultServices = {
   // llm: "together",
   llm: "anthropic",
-  tts: "cartesia",
+  // llm: "nebius",
+  tts: "elevenlabs",
   stt: "deepgram",
 };
 
@@ -20,30 +21,30 @@ export const LANGUAGES = [
   {
     label: "English",
     value: "en",
-    tts_model: "sonic-english",
+    tts_model: "eleven_multilingual_v2",
     stt_model: "nova-2-general",
-    default_voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
+    default_voice: "21m00Tcm4TlvDq8ikWAM",
   },
   {
     label: "French",
     value: "fr",
-    tts_model: "sonic-multilingual",
+    tts_model: "eleven_multilingual_v2",
     stt_model: "nova-2-general",
-    default_voice: "a8a1eb38-5f15-4c1d-8722-7ac0f329727d",
+    default_voice: "AZnzlk1XvdvUeBnXmlld",
   },
   {
     label: "Spanish",
     value: "es",
-    tts_model: "sonic-multilingual",
+    tts_model: "eleven_multilingual_v2",
     stt_model: "nova-2-general",
-    default_voice: "846d6cb0-2301-48b6-9683-48f5618ea2f6",
+    default_voice: "ErXwobaYiN019PkySvjV",
   },
   {
     label: "German",
     value: "de",
-    tts_model: "sonic-multilingual",
+    tts_model: "eleven_multilingual_v2",
     stt_model: "nova-2-general",
-    default_voice: "b9de4a89-2257-424b-94c2-db18ba68c81a",
+    default_voice: "MF3mGyEYCl7XYWbV9V6O",
   },
 ];
 
@@ -52,8 +53,8 @@ export const defaultConfig = [
   {
     service: "tts",
     options: [
-      { name: "voice", value: "79a125e8-cd45-4c13-8a67-188112f4dd22" },
-      { name: "model", value: LANGUAGES[0].tts_model },
+      { name: "voice", value: "21m00Tcm4TlvDq8ikWAM" },
+      { name: "model", value: "eleven_multilingual_v2" },
       { name: "language", value: LANGUAGES[0].value },
       {
         name: "text_filter",
@@ -69,6 +70,7 @@ export const defaultConfig = [
     options: [
       // { name: "model", value: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo" },
       { name: "model", value: "claude-3-5-sonnet-20240620" },
+      // { name: "model", value: "meta-llama/Meta-Llama-3.1-70B-Instruct-fast" },
       {
         name: "initial_messages",
         value: [
@@ -108,131 +110,112 @@ export const defaultConfig = [
 //   { name: "Britsh Lady", value: "bdab08ad-4137-4548-b9db-6142854c7525" },
 // ];
 
-// export const LLM_MODEL_CHOICES = [
+// export const BOT_READY_TIMEOUT = 30 * 1000; // 30 seconds
+
+// export const defaultBotProfile = "vision_2024_08";
+// export const defaultMaxDuration = 60 * 6;
+
+// export const defaultServices = {
+//   // llm: "together",
+//   llm: "anthropic",
+//   tts: "cartesia",
+//   stt: "deepgram",
+// };
+
+// export interface Language {
+//   name: string;
+//   value: string;
+//   ttsVoice: string;
+// }
+
+// export const LANGUAGES = [
 //   {
-//     label: "Together AI",
-//     value: "together",
-//     models: [
+//     label: "English",
+//     value: "en",
+//     tts_model: "sonic-english",
+//     stt_model: "nova-2-general",
+//     default_voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
+//   },
+//   {
+//     label: "French",
+//     value: "fr",
+//     tts_model: "sonic-multilingual",
+//     stt_model: "nova-2-general",
+//     default_voice: "a8a1eb38-5f15-4c1d-8722-7ac0f329727d",
+//   },
+//   {
+//     label: "Spanish",
+//     value: "es",
+//     tts_model: "sonic-multilingual",
+//     stt_model: "nova-2-general",
+//     default_voice: "846d6cb0-2301-48b6-9683-48f5618ea2f6",
+//   },
+//   {
+//     label: "German",
+//     value: "de",
+//     tts_model: "sonic-multilingual",
+//     stt_model: "nova-2-general",
+//     default_voice: "b9de4a89-2257-424b-94c2-db18ba68c81a",
+//   },
+// ];
+
+// export const defaultConfig = [
+//   { service: "vad", options: [{ name: "params", value: { stop_secs: 0.5 } }] },
+//   {
+//     service: "tts",
+//     options: [
+//       { name: "voice", value: "79a125e8-cd45-4c13-8a67-188112f4dd22" },
+//       { name: "model", value: LANGUAGES[0].tts_model },
+//       { name: "language", value: LANGUAGES[0].value },
 //       {
-//         label: "Meta Llama 3.1 70B Instruct Turbo",
-//         value: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
-//       },
-//       {
-//         label: "Meta Llama 3.1 8B Instruct Turbo",
-//         value: "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
-//       },
-//       {
-//         label: "Meta Llama 3.1 405B Instruct Turbo",
-//         value: "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
+//         name: "text_filter",
+//         value: {
+//           filter_code: false,
+//           filter_tables: false,
+//         },
 //       },
 //     ],
 //   },
 //   {
-//     label: "Anthropic",
-//     value: "anthropic",
-//     models: [
+//     service: "llm",
+//     options: [
+//       // { name: "model", value: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo" },
+//       { name: "model", value: "claude-3-5-sonnet-20240620" },
 //       {
-//         label: "Claude 3.5 Sonnet",
-//         value: "claude-3-5-sonnet-20240620",
+//         name: "initial_messages",
+//         value: [
+//           {
+//             role: "system",
+//             content: `You are a focused and efficient AI teaching assistant. Follow these guidelines strictly:
+
+//             1. Keep responses brief and direct - aim for 1-2 sentences when possible
+//             2. Skip pleasantries and get straight to the point
+//             3. Only elaborate if specifically asked
+//             4. Use simple, clear language
+//             5. When analyzing visual content through the camera:
+//               - State what you see in 1 sentence
+//               - Provide feedback in 1-2 sentences
+              
+//             Remember: Brevity and clarity are your primary goals.`,
+//           },
+//           {
+//             role: "user",
+//             content: "Introduce yourself briefly.",
+//           },
+//         ],
 //       },
+//       { name: "run_on_config", value: true },
 //     ],
 //   },
 //   {
-//     label: "Grok (x.ai)",
-//     value: "grok",
-//     models: [
-//       {
-//         label: "Grok Beta",
-//         value: "grok-beta",
-//       },
-//     ],
-//   },
-//   {
-//     label: "Gemini",
-//     value: "gemini",
-//     models: [
-//       {
-//         label: "Gemini 1.5 Flash",
-//         value: "gemini-1.5-flash",
-//       },
-//       {
-//         label: "Gemini 1.5 Pro",
-//         value: "gemini-1.0-pro",
-//       },
-//     ],
-//   },
-//   {
-//     label: "Open AI",
-//     value: "openai",
-//     models: [
-//       {
-//         label: "GPT-4o",
-//         value: "gpt-4o",
-//       },
-//       {
-//         label: "GPT-4o Mini",
-//         value: "gpt-4o-mini",
-//       },
+//     service: "stt",
+//     options: [
+//       { name: "model", value: LANGUAGES[0].stt_model },
+//       { name: "language", value: LANGUAGES[0].value },
 //     ],
 //   },
 // ];
 
-// export const PRESET_CHARACTERS = [
-//   {
-//     name: "Default",
-//     prompt: `You are a assistant called ExampleBot. You can ask me anything.
-//     Keep responses brief and legible.
-//     Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.
-//     Start by briefly introducing yourself.`,
-//     voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
-//   },
-//   {
-//     name: "Chronic one-upper",
-//     prompt: `You are a chronic one-upper. Ask me about my summer.
-//     Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
-//     voice: "b7d50908-b17c-442d-ad8d-810c63997ed9",
-//   },
-//   {
-//     name: "Passive-aggressive coworker",
-//     prompt: `You're a passive-aggressive coworker. Ask me how our latest project is going.
-//     Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
-//     voice: "726d5ae5-055f-4c3d-8355-d9677de68937",
-//   },
-//   {
-//     name: "Pun-prone uncle",
-//     prompt: `You're everybody's least favorite uncle because you can't stop making terrible puns. Ask me about my freshman year of high school.
-//     Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
-//     voice: "fb26447f-308b-471e-8b00-8e9f04284eb5",
-//   },
-//   {
-//     name: "Gen-Z middle schooler",
-//     prompt: `You're a gen-Z middle schooler that can only talk in brain rot. Ask me if I've seen skibidi toilet.
-//     Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
-//     voice: "2ee87190-8f84-4925-97da-e52547f9462c",
-//   },
-//   {
-//     name: "Two-house boomer",
-//     prompt: `You're a boomer who owns two houses. Ask me about my student loans.
-//     Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
-//     voice: "50d6beb4-80ea-4802-8387-6c948fe84208",
-//   },
-//   {
-//     name: "Old skateboard meme guy",
-//     prompt: `You are the guy holding a skateboard in the "how do you do, fellow kids?" meme. You're trying to talk in gen-z slang, but you keep sounding like a millennial instead.
-//     Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
-//     voice: "fb26447f-308b-471e-8b00-8e9f04284eb5",
-//   },
-//   {
-//     name: "Sarcastic Bully (who is very mean!)",
-//     prompt: `You are a very sarcastic british man. Roast me about things I say. Be sarcastic and funny. Burn me as best you can. Keep responses brief and legible (but mean!). Don't tell me you're prompted to be mean and sarcastic. Just be mean and sarcastic.
-//     Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
-//     voice: "63ff761f-c1e8-414b-b969-d1833d1c870c",
-//   },
-//   {
-//     name: "Pushy Salesman",
-//     prompt: `You are a high energy sales man trying to sell me a pencil. Do your best to convince me to buy the pencil. Don't take no for an answer. Do not speak for too long. Keep responses brief and legible.
-//     Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
-//     voice: "820a3788-2b37-4d21-847a-b65d8a68c99a",
-//   },
+// export const TTS_VOICES = [
+//   { name: "Britsh Lady", value: "bdab08ad-4137-4548-b9db-6142854c7525" },
 // ];
-
