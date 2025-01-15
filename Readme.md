@@ -85,17 +85,6 @@ npm run dev
    - Configure devices
    - End session
 
-## Project Structure
-ai-teacher-demo/
-├── app/ # Next.js app directory
-├── components/
-│ ├── Session/ # Main session components
-│ ├── Setup/ # Device setup components
-│ └── ui/ # Reusable UI components
-├── utils/ # Utility functions
-├── types/ # TypeScript type definitions
-└── public/ # Static assets
-
 
 ## Key Components
 
